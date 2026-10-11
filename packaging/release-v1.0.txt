@@ -1,0 +1,65 @@
+# VideoDownloader v1.0
+
+![VideoDownloader](https://raw.githubusercontent.com/jotadev27/Video-Downloader/main/src/video_downloader/assets/VideoDownloader.png)
+
+VideoDownloader inspects public video links, lets you choose an available resolution,
+and saves files after verifying their video format. All interface and installer text
+is in English.
+
+## Downloads
+
+- VideoDownloader-1.0.0-windows-x64-setup.exe: English installation wizard with
+  branded artwork, a Start menu shortcut, optional desktop shortcut, and uninstaller.
+- VideoDownloader-1.0.0-windows-x64-portable.zip: extract fully and open
+  VideoDownloader/VideoDownloader.exe. Keep tools beside the application folder.
+- VideoDownloader-1.0.0-linux-x64-installer.tar.gz: one installer for Ubuntu 24.04+,
+  Manjaro/Arch, Fedora, and compatible derivatives. Requires Python 3.11+, glibc
+  2.34+, a graphical desktop, and internet for Python dependencies. Firefox and
+  Node are bundled; FFmpeg and Bubblewrap use the distribution's packages.
+- SHA256SUMS.txt: SHA-256 checksums for all four other release files.
+- RELEASE-v1.0.txt: these notes, formatted for copying into GitHub Releases.
+
+Windows x32 is not included in this release.
+
+## Linux installation
+
+```sh
+tar -xzf VideoDownloader-1.0.0-linux-x64-installer.tar.gz
+cd VideoDownloader-1.0.0-linux-x64
+chmod +x install.sh
+./install.sh
+```
+
+The installer detects apt, pacman, or dnf and asks before installing system
+dependencies. Then open VideoDownloader from the applications menu.
+
+## Included improvements
+
+- Consistent VideoDownloader naming and a single source project folder.
+- Native application/window/taskbar icons and desktop shortcuts use matching identity.
+- Cancelling asks for confirmation. No keeps downloading; Yes returns home after
+  temporary download files have been cleaned up.
+- A footer explains that a failed inspection can be retried.
+- Unused antivirus and legacy packaging code removed. Domain rules, download
+  workflows, platform adapters, and Qt presentation remain separate.
+- Local threat-domain checks, uBlock Origin Lite browser inspection, guarded
+  redirects, disposable browser profiles, and video-container validation.
+- Windows browser cleanup handles child processes, long extension-storage paths,
+  and brief file locks without retaining temporary profiles.
+- Release archives exclude local settings, profiles, caches, downloaded media,
+  and private test links. Source Git ignores build and installer contents.
+
+## Verification and limits
+
+Windows regression tests, frozen application startup/close, and the local diagnostic
+exercise generated media rather than personal files. Linux runtime archives match
+official Mozilla/Node checksums; this Windows host cannot execute the Linux installer,
+so installation on each target distribution still needs user testing.
+
+These protections reduce risk and do not guarantee that every site or file is safe.
+They do not bypass DRM or authentication. Inspection retries help temporary failures;
+unsupported or restricted sources can still fail. Keep runtimes and the OS updated.
+
+Verify with sha256sum -c SHA256SUMS.txt on Linux, or compare Get-FileHash -Algorithm
+SHA256 results with the manifest on Windows. Download packages from this repository's
+release page: https://github.com/jotadev27/Video-Downloader/releases
