@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "videodownloader"
+version = "1.0.0"
+description = "A private, native desktop video downloader"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "VideoDownloader contributors" }]
+dependencies = [
+    "PySide6>=6.7,<7",
+    "yt-dlp[default,curl-cffi]>=2026.8.19",
+    "curl-cffi>=0.15,<0.17",
+    "websockets>=15,<18",
+    "idna>=3.7,<4",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3,<9",
+    "ruff>=0.9,<1",
+]
+
+[project.gui-scripts]
+videodownloader = "video_downloader.main:main"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+video_downloader = ["assets/*.png", "assets/*.svg", "assets/actions/*.svg", "assets/*.xpi", "assets/*.txt"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
